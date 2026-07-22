@@ -8,7 +8,7 @@ if both exist. validateTask() → false
 mergeTaskUpdate(original, ...updates) -- rest operator; later updates override
 original. mergeTaskUpdate({title:"Old"}, {title:"New"}) → {title:"New", ...}
 */
-
+    
 
 export const formatDate = (date) => `Due: ${date.toLocaleDateString()}`;
 
@@ -17,5 +17,5 @@ export const validateTask = ({title, dueDate} = {}) => {
 }
 
 export const mergeTaskUpdate = (original, ...updates) => {
-    return Object.assign(original, ...updates);
+    return Object.assign({}, original, ...updates);
 }
