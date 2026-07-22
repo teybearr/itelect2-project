@@ -21,7 +21,7 @@ try {
     const newTask = createTask(validTaskData);
     console.log('Task created:', newTask);
 } catch (error) {
-    console.error(' Unexpected error:', error.message);
+    console.error('Unexpected error:', error.message);
 }
 
 try {
@@ -30,5 +30,5 @@ try {
     const invalidTask = createTask(invalidTaskData);
     console.log('Task created:', invalidTask);
 } catch (error) {
-    console.error(' Unexpected error:', error.message);
+    console.error('Unexpected error:', error.message);
 }
