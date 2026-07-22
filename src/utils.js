@@ -19,3 +19,22 @@ export const validateTask = ({title, dueDate} = {}) => {
 export const mergeTaskUpdate = (original, ...updates) => {
     return Object.assign({}, original, ...updates);
 }
+
+/*
+    create TaskValidationError extends Error in src/utils.js, with this.name = "TaskValidationError".
+    Add createTask(taskData) to src/utils.js: calls validateTask(taskData) (from GT3). If invalid,
+    throw new TaskValidationError("Invalid task data"). If valid, return { id: Date.now(),
+    completed: false, ...taskData }.
+*/
+
+export class TaskValidationError extends Error {
+    constructor(message) {
+        super(message);
+        this.name = "TaskValidationError";
+    }
+}
+
+export const createTask = (taskData) => {
+    if(!validateTask(taskData)) throw new TaskValidationError("Invalid task data");
+    return { id: Date.now(), completed: false, ...taskData };
+}

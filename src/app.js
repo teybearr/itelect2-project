@@ -1,6 +1,6 @@
 // app.js - Main application entry point
 
-import { formatDate, validateTask, mergeTaskUpdate } from './util.js';
+import { formatDate, validateTask, mergeTaskUpdate, createTask, TaskValidationError } from './utils.js';
 import { fetchSampleUsers, fetchSampleUsersPromise } from './api.js';
 
 // console.log('Server starting...');
