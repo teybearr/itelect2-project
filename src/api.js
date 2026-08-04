@@ -31,5 +31,7 @@ export const fetchSampleUsersPromise = () => {
             console.error('Error fetching users:', error);
             return [];
         })
-        .finally(() => { console.log('Fetch attempt finished.'); });
+        .finally(() => { 
+            console.log('Fetch attempt finished.'); 
+        });
 }

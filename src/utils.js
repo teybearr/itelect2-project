@@ -1,3 +1,9 @@
+export const mockTasks = [
+    { id: 1, title: "itelect gt5", dueDate: "2026-08-05", completed: false },
+    { id: 2, title: "liferiz activity 3", dueDate: "2026-07-31", completed: true },
+    { id: 3, title: "ethikos presentation", dueDate: "2026-08-06", completed: false },
+];
+
 /*
     formatDate(date) -- template literal + date.toLocaleDateString(). formatDate(new
     Date("2026-07-22")) → "Due: 7/22/2026"
