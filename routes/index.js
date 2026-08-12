@@ -7,7 +7,8 @@ const router = express.Router();
 let cachedUsers = [];
     (async () => {
         cachedUsers = await fetchSampleUsers();
-    })();
+    }
+)();
 
 router.get("/tasks", (req, res) => { res.json(mockTasks); });
 
