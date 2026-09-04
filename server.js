@@ -1,5 +1,3 @@
-process.env.PORT || 3000;
-
 import express from "express";
 import router from "./routes/index.js";
 import cors from "cors";
@@ -23,3 +21,5 @@ app.use((err, req, res, next) => {
     const status = err.status || 500;
     res.status(status).json({ error: err.message });
 });
+
+// comment here hello
