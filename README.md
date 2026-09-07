@@ -49,3 +49,28 @@ My IT Elective 2 backend web development project
 
 ### Error Handling Sample
 ![Error Sample Screenshot](./public/gt8/Error_Sample.png)
+
+---
+
+## API Testing (for GT9)
+
+### POST /api/auth/register
+![Register New User Screenshot](./public/gt9/regNewUser.png)
+
+### POST /api/auth/register (duplicate email → 409)
+![Register Duplicate Email Screenshot](./public/gt9/regSameEmail.png)
+
+### POST /api/auth/register (password under 8 chars → 400)
+![Register Short Password Screenshot](./public/gt9/regXpw.png)
+
+### POST /api/auth/login
+![Login Screenshot](./public/gt9/loginUser.png)
+
+### POST /api/auth/login (wrong password → 401)
+![Login Wrong Password Screenshot](./public/gt9/loginXpw.png)
+
+### Users table in pgAdmin (hashed passwords)
+![Users Table Screenshot](./public/gt9/database.png)
+
+### Decoded token on jwt.io
+![JWT Payload Screenshot](./public/gt9/jwtio.png)
