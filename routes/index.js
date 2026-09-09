@@ -6,7 +6,7 @@ const router = express.Router();
 
 router.get('/tasks', async (req, res, next) => {
   try {
-    const tasks = await Task.findAll({ include: User });
+    const tasks = await Task.findAll({ include: { model: User, attributes: { exclude: ['password'] } } });
     res.json(tasks);
   } catch (err) {
     next(err);
@@ -15,7 +15,7 @@ router.get('/tasks', async (req, res, next) => {
 
 router.get('/tasks/:id', async (req, res, next) => {
   try {
-    const task = await Task.findByPk(req.params.id, { include: User });
+    const task = await Task.findByPk(req.params.id, { include: { model: User, attributes: { exclude: ['password'] } } });
     if (!task) return res.status(404).json({ error: 'Task not found' });
     res.json(task);
   } catch (err) {

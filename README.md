@@ -50,6 +50,9 @@ My IT Elective 2 backend web development project
 ### Error Handling Sample
 ![Error Sample Screenshot](./public/gt8/Error_Sample.png)
 
+### POST /api/tasks with No Title Error
+![POST Task with No Title Screenshot](./public/gt8/POST_task_notitle.png)
+
 ---
 
 ## API Testing (for GT9)

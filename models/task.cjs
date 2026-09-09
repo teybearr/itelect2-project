@@ -14,7 +14,11 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
   Task.init({
-    title: DataTypes.STRING,
+    title: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      validate: { notEmpty: { msg: 'title is required' } }
+    },
     dueDate: DataTypes.DATE,
     completed: DataTypes.BOOLEAN,
     userId: DataTypes.INTEGER
