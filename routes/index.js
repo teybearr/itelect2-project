@@ -1,7 +1,10 @@
 import express from "express";
 import db from '../models/index.cjs';
+import verifyToken from "../middleware/verifyToken.js";
+import requireRole from "../middleware/requireRole.js";
 
 const { Task, User } = db;
+//const { Op } = Sequelize;
 const router = express.Router();
 
 router.get('/tasks', async (req, res, next) => {
@@ -32,7 +35,7 @@ router.get("/users", async (req, res, next) => {
   }
 });
 
-router.post('/tasks', async (req, res, next) => {
+router.post('/tasks', verifyToken, async (req, res, next) => {
   try {
     const newTask = await Task.create(req.body);
     res.status(201).json(newTask);
@@ -41,7 +44,7 @@ router.post('/tasks', async (req, res, next) => {
   }
 });
 
-router.put('/tasks/:id', async (req, res, next) => {
+router.put('/tasks/:id', verifyToken, async (req, res, next) => {
   try {
     const task = await Task.findByPk(req.params.id);
     if (!task) return res.status(404).json({ error: 'Task not found' });
@@ -53,7 +56,7 @@ router.put('/tasks/:id', async (req, res, next) => {
   }
 });
 
-router.delete('/tasks/:id', async (req, res, next) => {
+router.delete('/tasks/:id', verifyToken, requireRole("admin"), async (req, res, next) => {
   try {
     const task = await Task.findByPk(req.params.id);
     if (!task) return res.status(404).json({ error: 'Task not found' });
