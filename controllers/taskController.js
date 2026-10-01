@@ -1,22 +1,17 @@
-import express from "express";
 import db from '../models/index.cjs';
-import verifyToken from "../middleware/verifyToken.js";
-import requireRole from "../middleware/requireRole.js";
 
 const { Task, User } = db;
-//const { Op } = Sequelize;
-const router = express.Router();
 
-router.get('/tasks', async (req, res, next) => {
+export const listTasks = async (req, res, next) => {
   try {
     const tasks = await Task.findAll({ include: { model: User, attributes: { exclude: ['password'] } } });
     res.json(tasks);
   } catch (err) {
     next(err);
   }
-});
+};
 
-router.get('/tasks/:id', async (req, res, next) => {
+export const getTaskById = async (req, res, next) => {
   try {
     const task = await Task.findByPk(req.params.id, { include: { model: User, attributes: { exclude: ['password'] } } });
     if (!task) return res.status(404).json({ error: 'Task not found' });
@@ -24,27 +19,18 @@ router.get('/tasks/:id', async (req, res, next) => {
   } catch (err) {
     next(err);
   }
-});
+};
 
-router.get("/users", async (req, res, next) => {
-  try {
-    const users = await User.findAll();
-    res.json(users);
-  } catch (err) {
-    next(err);
-  }
-});
-
-router.post('/tasks', verifyToken, async (req, res, next) => {
+export const createTask = async (req, res, next) => {
   try {
     const newTask = await Task.create(req.body);
     res.status(201).json(newTask);
   } catch (err) {
     next(err);
   }
-});
+};
 
-router.put('/tasks/:id', verifyToken, async (req, res, next) => {
+export const updateTask = async (req, res, next) => {
   try {
     const task = await Task.findByPk(req.params.id);
     if (!task) return res.status(404).json({ error: 'Task not found' });
@@ -54,9 +40,9 @@ router.put('/tasks/:id', verifyToken, async (req, res, next) => {
   } catch (err) {
     next(err);
   }
-});
+};
 
-router.delete('/tasks/:id', verifyToken, requireRole("admin"), async (req, res, next) => {
+export const deleteTask = async (req, res, next) => {
   try {
     const task = await Task.findByPk(req.params.id);
     if (!task) return res.status(404).json({ error: 'Task not found' });
@@ -66,6 +52,4 @@ router.delete('/tasks/:id', verifyToken, requireRole("admin"), async (req, res, 
   } catch (err) {
     next(err);
   }
-});
-
-export default router;
+};
